@@ -1,4 +1,4 @@
-name: Primeiro Workflow LInuxtipos
+name: Vendo arquivo compartilhados entre steps
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 
 jobs:
-  giropops:
+  entre-steps:
     runs-on: ubuntu-latest
     steps:
         - name: Confere versão do Ubuntu
