@@ -1,5 +1,4 @@
-name: Desaio 1 - Docker
-
+name: Desafio 1 - Docker
 
 on:
   workflow_dispatch:
@@ -14,19 +13,13 @@ jobs:
   giropops:
     runs-on: ubuntu-latest
     steps:
-      - name: Confere versão do Ubuntu
-        run: cat /etc/os-release
-
-      - name: Exibir uma mensagem
-        run: echo "Estou fazendo o curso de Github Actions da Linuxtips"
-
       - name: Fazer pull da imagem Docker
         run: docker pull ${{ inputs.image_name }}
 
-      - name: Listar imagens Docker
+      - name: Verificar imagem baixada
         run: docker image ls
 
-      - name: Analisar imagem com Docker Scout
+      - name: Docker Scout
         uses: docker/scout-action@v1
         with:
           command: quickview
