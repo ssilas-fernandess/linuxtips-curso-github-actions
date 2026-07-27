@@ -32,7 +32,7 @@ jobs:
         uses: docker/scout-action@v1
         with:
           command: cves,recommendations
-          image: image://${{ inputs.image_name }}
+          image: ${{ inputs.image_name }}
           ignore-base: true
           ignore-unchanged: true
           only-fixed: true
