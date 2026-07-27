@@ -31,12 +31,16 @@ jobs:
         uses: docker/scout-action@v1
         with:
           command: quickview
-          image: ${{ inputs.image_name }}
+          image: image://${{ inputs.image_name }}
+          dockerhub-user: ${{ secrets.DOCKERHUB_USERNAME }}
+          dockerhub-password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Docker Scout - CVEs
         uses: docker/scout-action@v1
         with:
           command: cves
-          image: ${{ inputs.image_name }}
+          image: image://${{ inputs.image_name }}
           summary: true
+          dockerhub-user: ${{ secrets.DOCKERHUB_USERNAME }}
+          dockerhub-password: ${{ secrets.DOCKERHUB_TOKEN }}
 
