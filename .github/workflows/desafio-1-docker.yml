@@ -6,13 +6,21 @@ on:
       image_name:
         description: 'Nome da imagem Docker para testar'
         required: true
-        default: alpine:latest
         type: string
 
 jobs:
-  giropops:
+  docker-scout:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Login no Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
       - name: Fazer pull da imagem Docker
         run: docker pull ${{ inputs.image_name }}
 
@@ -20,7 +28,14 @@ jobs:
         run: docker image ls
 
       - name: Docker Scout
+        id: docker-scout
         uses: docker/scout-action@v1
         with:
-          command: quickview
+          command: cves
           image: ${{ inputs.image_name }}
+          summary: true
+          ignore-base: true
+          only-fixed: true
+          dockerhub-user: ${{ secrets.DOCKERHUB_USERNAME }}
+          dockerhub-password: ${{ secrets.DOCKERHUB_TOKEN }}
+
