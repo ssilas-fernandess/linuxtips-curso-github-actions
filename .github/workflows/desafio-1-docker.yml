@@ -27,22 +27,16 @@ jobs:
       - name: Verificar imagem baixada
         run: docker image ls
 
-      - name: Docker Scout
-        id: docker-scout
+      - name: Docker Scout - quickview
         uses: docker/scout-action@v1
         with:
-          command: cves,recommendations,compare
-          to-latest: true
-          ignore-base: true
-          ignore-unchanged: true
-          only-fixed: true
+          command: quickview
+          image: ${{ inputs.image_name }}
 
-      - name: Analyze for critical and high CVEs
-        id: docker-scout-cves
+      - name: Docker Scout - CVEs
         uses: docker/scout-action@v1
         with:
           command: cves
           image: ${{ inputs.image_name }}
-          sarif-file: sarif.output.json
           summary: true
 
