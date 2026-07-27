@@ -34,7 +34,7 @@ jobs:
             path: mensagem.txt
         
         - name: Listar o diretorio
-          run: ls -lha $$ ls ./strigus/
+          run: ls -lha && ls ./strigus/
 
         - name: Acessa o arquivo
           run: mv strigus/mensagem.txt . && rm -rf ./strigus
