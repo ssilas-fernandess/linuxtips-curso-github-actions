@@ -31,10 +31,10 @@ jobs:
         id: docker-scout
         uses: docker/scout-action@v1
         with:
-          command: cves,recommendations
+          command: cves
           image: ${{ inputs.image_name }}
+          summary: true
           ignore-base: true
-          ignore-unchanged: true
           only-fixed: true
           dockerhub-user: ${{ secrets.DOCKERHUB_USERNAME }}
           dockerhub-password: ${{ secrets.DOCKERHUB_TOKEN }}
