@@ -5,18 +5,19 @@ on:
     inputs:
       image_name:
         description: 'Nome da imagem Docker para testar'
-        required: true
+        required: false
+        default: 'ngix:latest'
         type: string
 
 jobs:
-  docker-scout:
+     docker-scout:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout do repositório
         uses: actions/checkout@v4
 
       - name: Login no Docker Hub
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
