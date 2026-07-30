@@ -1,11 +1,7 @@
 name: Vendo arquivo compartilhados entre jobs
 
 on:
-  push:
-    branches:
-        - main
-
-
+  workflow_dispatch:
 jobs:
   job_1:
     runs-on: ubuntu-latest
